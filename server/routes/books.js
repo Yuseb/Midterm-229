@@ -23,6 +23,22 @@ router.get('/', (req, res, next) => {
   });
 
 });
+router.get('/', (req, res, next) => {
+  // find all books in the books collection
+  books.find( (err, books) => {
+    if (err) {
+      return console.error(err);
+    }
+    else {
+      res.render('books/table', {
+        title: 'Books',
+        page: 'table',
+        books: books
+      });
+    }
+  });
+
+});
 
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
